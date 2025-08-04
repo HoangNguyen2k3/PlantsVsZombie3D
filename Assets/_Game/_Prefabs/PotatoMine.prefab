@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 4393860122955288483}
   m_Layer: 12
   m_Name: PotatoMine
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
