@@ -25,6 +25,7 @@ public class SunPrefab : MonoBehaviour {
             }
         }
         if (other.CompareTag("Player")) {
+            GamePlayManager.Ins.ChangeNumSun(50);
             Destroy(gameObject);
         }
     }
