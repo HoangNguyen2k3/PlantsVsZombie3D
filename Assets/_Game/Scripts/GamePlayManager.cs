@@ -74,7 +74,7 @@ public class GamePlayManager : MonoBehaviour {
         while (numSpawnMax > 0) {
             numSpawnMax--;
             int ranpos = Random.Range(0, list_posSpawn.Count);
-            Instantiate(zombies[0], list_posSpawn[ranpos].position, Quaternion.identity);
+            Instantiate(zombies[Random.Range(0, zombies.Count)], list_posSpawn[ranpos].position, Quaternion.identity);
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
     }

@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 65552620575986654}
   - component: {fileID: 95049063613846829}
   - component: {fileID: 4393860122955288483}
+  - component: {fileID: 7542687968817670602}
   m_Layer: 12
   m_Name: PotatoMine
   m_TagString: Plant
@@ -431,8 +432,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1.2574035, y: 2, z: 1}
+  m_Center: {x: 0.12870176, y: 1, z: 0}
 --- !u!95 &95049063613846829
 Animator:
   serializedVersion: 7
@@ -468,9 +469,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  isDead: 0
   damage: 5
   explosionRadius: 3
   explodePrefab: {fileID: 129868, guid: fa380a2f925f43244b945d269df9ae44, type: 3}
+--- !u!65 &7542687968817670602
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628113114065079}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.4694717, z: 1}
+  m_Center: {x: 0, y: 0.73473597, z: 0}
 --- !u!1 &1801598989970387
 GameObject:
   m_ObjectHideFlags: 0

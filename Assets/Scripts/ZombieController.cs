@@ -6,7 +6,7 @@ public class ZombieController : MonoBehaviour {
     public int maxHealth;
     private int currentHealth;
 
-    private float attackRange = 1.0f;
+    private float attackRange = 0.5f;
     private int damagePerHit = 20;
     private float attackInterval = 1.0f; //chu ky tan cong
 
@@ -31,7 +31,7 @@ public class ZombieController : MonoBehaviour {
     void DetectPlant() {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -Vector3.right, out hit, attackRange)) {
-            if (hit.collider.CompareTag("Plant")) {
+            if (hit.collider.CompareTag("Plant") && hit.collider.isTrigger == false) {
                 targetPlant = hit.collider.gameObject;
                 StartCoroutine(AttackPlant(targetPlant));
             }
