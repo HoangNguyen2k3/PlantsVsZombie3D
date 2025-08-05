@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,15 @@ public class GamePlayManager : MonoBehaviour {
     public PlantCard selectedPlantCard;
     public LayerMask gridCellLayer; //Layer của grid cell
     public List<PlantCard> list_PlantCard = new();
+    [Header("-----------Spawn Zombie------------")]
+    public float timeBeforeSpawnZombie = 10f;
+    public List<Transform> list_posSpawn = new();
+    public List<GameObject> zombies = new();
+    public bool startSpawn = false;
+    public float timeBetweenSpawn = 5f;
+    public int numSpawnMax = 10;
+
+    private float time = 0;
     private void Awake() {
         Ins = this;
     }
@@ -19,6 +29,11 @@ public class GamePlayManager : MonoBehaviour {
         text_numSun.text = currentSun.ToString();
     }
     void Update() {
+        time += Time.deltaTime;
+        if (startSpawn == false && time > timeBeforeSpawnZombie) {
+            startSpawn = true;
+            StartCoroutine(SpawnEnemy());
+        }
         if (Input.GetMouseButtonDown(0)) {
             if (IsPointerOverUI()) {
 
@@ -54,6 +69,14 @@ public class GamePlayManager : MonoBehaviour {
     public void ChangeNumSun(int num) {
         currentSun += num;
         text_numSun.text = currentSun.ToString();
+    }
+    public IEnumerator SpawnEnemy() {
+        while (numSpawnMax > 0) {
+            numSpawnMax--;
+            int ranpos = Random.Range(0, list_posSpawn.Count);
+            Instantiate(zombies[0], list_posSpawn[ranpos].position, Quaternion.identity);
+            yield return new WaitForSeconds(timeBetweenSpawn);
+        }
     }
 }
 /*[System.Serializable]

@@ -468,6 +468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  damage: 5
+  explosionRadius: 3
+  explodePrefab: {fileID: 129868, guid: fa380a2f925f43244b945d269df9ae44, type: 3}
 --- !u!1 &1801598989970387
 GameObject:
   m_ObjectHideFlags: 0

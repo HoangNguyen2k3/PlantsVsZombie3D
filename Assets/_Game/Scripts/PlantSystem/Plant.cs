@@ -3,6 +3,7 @@
 public abstract class Plant : MonoBehaviour {
     public int maxHP = 100;
     protected int currentHP;
+    public bool isDead = false;
 
     protected virtual void Start() {
         currentHP = maxHP;
@@ -11,6 +12,7 @@ public abstract class Plant : MonoBehaviour {
     public void TakeDamage(int amount) {
         currentHP -= amount;
         if (currentHP <= 0) {
+            isDead = true;
             Die();
         }
     }

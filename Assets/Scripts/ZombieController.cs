@@ -7,7 +7,7 @@ public class ZombieController : MonoBehaviour {
     private int currentHealth;
 
     private float attackRange = 1.0f;
-    private int damagePerHit = 1;
+    private int damagePerHit = 20;
     private float attackInterval = 1.0f; //chu ky tan cong
 
     private bool isDead = false;
@@ -22,7 +22,7 @@ public class ZombieController : MonoBehaviour {
     private void Update() {
         if (isDead) return;
         if (!isAttacking) {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(-Vector3.right * speed * Time.deltaTime);
             DetectPlant();
         }
 
@@ -30,7 +30,7 @@ public class ZombieController : MonoBehaviour {
 
     void DetectPlant() {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange)) {
+        if (Physics.Raycast(transform.position, -Vector3.right, out hit, attackRange)) {
             if (hit.collider.CompareTag("Plant")) {
                 targetPlant = hit.collider.gameObject;
                 StartCoroutine(AttackPlant(targetPlant));
@@ -39,22 +39,20 @@ public class ZombieController : MonoBehaviour {
     }
 
     IEnumerator AttackPlant(GameObject plant) {
-        /*        isAttacking = true;
+        isAttacking = true;
 
-                Plant plantHealth = plant.GetComponent<Plant>();
-                if (plantHealth == null)
-                {
-                    isAttacking = false;
-                    yield break;
-                }
+        Plant plantHealth = plant.GetComponent<Plant>();
+        if (plantHealth == null) {
+            isAttacking = false;
+            yield break;
+        }
 
-                while (!isDead && plantHealth != null && !plantHealth.IsDead())
-                {
-                    plantHealth.TakeDamage(damagePerHit);
-                    yield return new WaitForSeconds(attackInterval);
-                }
+        while (!isDead && plantHealth != null && !plantHealth.isDead) {
+            plantHealth.TakeDamage(damagePerHit);
+            yield return new WaitForSeconds(attackInterval);
+        }
 
-                isAttacking = false;*/
+        isAttacking = false;
         yield return null;
     }
 
