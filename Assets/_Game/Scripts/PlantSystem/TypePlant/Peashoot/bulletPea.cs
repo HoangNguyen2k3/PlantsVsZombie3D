@@ -10,6 +10,9 @@ public class bulletPea : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy") || other.CompareTag("EndAttack")) {
+            if (other.CompareTag("Enemy")) {
+                other.GetComponent<ZombieController>().TakeDamage(1);
+            }
             Destroy(gameObject); // Hủy viên đạn
         }
     }

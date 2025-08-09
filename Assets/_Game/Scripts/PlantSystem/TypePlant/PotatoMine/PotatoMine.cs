@@ -1,6 +1,41 @@
 ﻿using UnityEngine;
+
 public class PotatoMine : Plant {
+    public float damage = 5f;
+    public float explosionRadius = 3f;
+    public GameObject explodePrefab;
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Enemy")) {
+            Attack();
+        }
+    }
+
     public override void Attack() {
-        Debug.Log("Sunflower bắn mặt trời theo hướng cong!");
+        // Tạo hiệu ứng vụ nổ
+        if (explodePrefab != null) {
+            Instantiate(explodePrefab, transform.position, Quaternion.identity);
+        }
+
+        // Tìm tất cả các collider trong bán kính vụ nổ
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider hit in colliders) {
+            if (hit.CompareTag("Enemy")) {
+                // Gây sát thương (giả sử Enemy có script "EnemyHealth" với hàm "TakeDamage")
+                ZombieController health = hit.GetComponent<ZombieController>();
+                if (health != null) {
+                    health.TakeDamage(5);
+                }
+            }
+        }
+
+        // Hủy PotatoMine sau khi nổ
+        Destroy(gameObject);
+    }
+
+    // Gợi ý thêm: vẽ phạm vi trong Scene view (debug)
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

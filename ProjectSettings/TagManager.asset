@@ -10,6 +10,7 @@ TagManager:
   - GridCell
   - EndAttack
   - Enemy
+  - Plant
   layers:
   - Default
   - TransparentFX
