@@ -471,7 +471,7 @@ MonoBehaviour:
   maxHP: 100
   isDead: 0
   damage: 5
-  explosionRadius: 3
+  explosionRadius: 2
   explodePrefab: {fileID: 129868, guid: fa380a2f925f43244b945d269df9ae44, type: 3}
 --- !u!65 &7542687968817670602
 BoxCollider:

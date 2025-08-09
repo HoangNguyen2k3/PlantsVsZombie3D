@@ -4,7 +4,7 @@ using UnityEngine;
 public class ZombieController : MonoBehaviour {
     public float speed;
     public int maxHealth;
-    private int currentHealth;
+    public int currentHealth;
 
     private float attackRange = 0.5f;
     private int damagePerHit = 20;
@@ -73,6 +73,6 @@ public class ZombieController : MonoBehaviour {
 
         StopAllCoroutines();
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 0f);
     }
 }

@@ -22,6 +22,7 @@ public class GamePlayManager : MonoBehaviour {
     public int numSpawnMax = 10;
 
     private float time = 0;
+    public Transform posHoldPlant;
     private void Awake() {
         Ins = this;
     }
