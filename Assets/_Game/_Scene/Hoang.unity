@@ -13999,6 +13999,8 @@ MonoBehaviour:
   - {fileID: 2074297601}
   - {fileID: 833126564}
   - {fileID: 1378327655}
+  - {fileID: 1018030444}
+  - {fileID: 1055700923}
   timeBeforeSpawnZombie: 0
   list_posSpawn:
   - {fileID: 933334400}
