@@ -8659,7 +8659,7 @@ Transform:
   m_GameObject: {fileID: 933334399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15896,7 +15896,7 @@ MonoBehaviour:
   - {fileID: 70089409}
   - {fileID: 1018030444}
   - {fileID: 1055700923}
-  timeBeforeSpawnZombie: 5
+  timeBeforeSpawnZombie: 0
   list_posSpawn:
   - {fileID: 933334400}
   - {fileID: 1980612485}
@@ -15904,7 +15904,7 @@ MonoBehaviour:
   - {fileID: 576555775}
   - {fileID: 572372595}
   zombies:
-  - {fileID: 8357270749039580975, guid: 6f0afd9bc950f434d819138b235c0d57, type: 3}
+  - {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
   startSpawn: 0
   timeBetweenSpawn: 3
   numSpawnMax: 10
