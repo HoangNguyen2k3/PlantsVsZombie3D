@@ -4,7 +4,6 @@ public abstract class Plant : MonoBehaviour {
     public int maxHP = 100;
     protected int currentHP;
     public bool isDead = false;
-
     protected virtual void Start() {
         currentHP = maxHP;
     }

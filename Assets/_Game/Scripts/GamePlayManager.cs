@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour {
     public static GamePlayManager Ins;
@@ -20,16 +21,25 @@ public class GamePlayManager : MonoBehaviour {
     public bool startSpawn = false;
     public float timeBetweenSpawn = 5f;
     public int numSpawnMax = 10;
+    public int numEnemyCurrentInMap = 10;
 
     private float time = 0;
     public Transform posHoldPlant;
+
+    public GameObject winningGameUI;
+    public GameObject losingGameUI;
+    public bool isEndGame = false;
+
     private void Awake() {
         Ins = this;
     }
     private void Start() {
+        numEnemyCurrentInMap = numSpawnMax;
         text_numSun.text = currentSun.ToString();
+        selectedPlantCard = null;
     }
     void Update() {
+        if (isEndGame) { return; }
         time += Time.deltaTime;
         if (startSpawn == false && time > timeBeforeSpawnZombie) {
             startSpawn = true;
@@ -43,15 +53,22 @@ public class GamePlayManager : MonoBehaviour {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit)) {
                     GridCell gridcell = hit.collider.GetComponentInParent<GridCell>();
-                    if (gridcell != null && selectedPlantCard != null) {
+                    if (gridcell != null && selectedPlantCard != null && selectedPlantCard.isCoolDown == false) {
                         if (!gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
                             Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
                             ChangeNumSun(-selectedPlantCard.price);
+                            selectedPlantCard.Cooldown();
+                            selectedPlantCard = null;
+                            InactiveAllCurrentPlant();
                         }
                     }
                 }
 
             }
+        }
+        if (numEnemyCurrentInMap == 0) {
+            WinningGame();
+            isEndGame = true;
         }
     }
     bool IsPointerOverUI() {
@@ -67,6 +84,11 @@ public class GamePlayManager : MonoBehaviour {
     public void ChangeCurrentPlant(PlantCard plant) {
         selectedPlantCard = plant;
     }
+    public void InactiveAllCurrentPlant() {
+        foreach (var item in list_PlantCard) {
+            item.chooseGameObject.SetActive(false);
+        }
+    }
     public void ChangeNumSun(int num) {
         currentSun += num;
         text_numSun.text = currentSun.ToString();
@@ -79,11 +101,25 @@ public class GamePlayManager : MonoBehaviour {
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
     }
+    public void WinningGame() {
+        isEndGame = true;
+        winningGameUI.SetActive(true);
+    }
+    public void LosingGame() {
+        isEndGame = true;
+        losingGameUI.SetActive(true);
+    }
+    public void PlayAgain() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
-/*[System.Serializable]
+
+[System.Serializable]
 public enum TypePlant {
     SunFlower,
     PeaShoot,
     PotatoMine,
-    WallNut
-}*/
+    WallNut,
+    CherryBomb,
+    Squash
+}

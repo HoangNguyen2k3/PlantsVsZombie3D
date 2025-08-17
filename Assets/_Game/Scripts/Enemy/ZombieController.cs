@@ -69,10 +69,14 @@ public class ZombieController : MonoBehaviour {
     }
 
     void Die() {
+
         isDead = true;
 
         StopAllCoroutines();
 
         Destroy(gameObject, 0f);
+    }
+    private void OnDestroy() {
+        GamePlayManager.Ins.numEnemyCurrentInMap--;
     }
 }

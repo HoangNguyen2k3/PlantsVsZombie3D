@@ -8,11 +8,14 @@ public class SunPrefab : MonoBehaviour {
     void Start() {
         rb = GetComponent<Rigidbody>();
 
-        // Tạo hướng xiên lên
-        Vector3 baseDirection = Vector3.up + Vector3.forward * 0.5f;
-        float randomAngle = Random.Range(-spreadAngle, spreadAngle);
-        Quaternion spreadRotation = Quaternion.Euler(0f, randomAngle, 0f);
-        Vector3 shootDirection = spreadRotation * baseDirection.normalized;
+        // Hướng cơ bản: bay lên
+        Vector3 baseDirection = Vector3.up;
+
+        // Random hướng trong hình nón với góc spreadAngle
+        Vector3 randomDir = Random.insideUnitSphere; // random 3D vector trong hình cầu
+        randomDir.y = Mathf.Abs(randomDir.y); // đảm bảo nó bay lên trên (không bay xuống đất)
+
+        Vector3 shootDirection = (baseDirection + randomDir * 0.5f).normalized;
 
         rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
     }

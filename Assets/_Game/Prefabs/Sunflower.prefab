@@ -1435,6 +1435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361522766416810301}
   - component: {fileID: 4446511631998700576}
+  - component: {fileID: 3192113633698864126}
   m_Layer: 0
   m_Name: Sunflower
   m_TagString: Plant
@@ -1477,11 +1478,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  isDead: 0
   sunPrefab: {fileID: 3881418423643823082, guid: 24fca201090094a4fa734390c7cc4371, type: 3}
   spawnRate: 5
   shootForce: 10
   spreadAngle: 20
   posAppear: {fileID: 8080351045899095847}
+--- !u!65 &3192113633698864126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544379768716790680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.07, y: 4.69, z: 2.05}
+  m_Center: {x: -2.823445e-21, y: 1.6666666, z: -0.00000049670535}
 --- !u!1 &3642311169572125790
 GameObject:
   m_ObjectHideFlags: 0
