@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1d7999a0c4e2b4c8f83692cc71360b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typePlant: 2
   maxHP: 100
   isDead: 0
   damage: 5

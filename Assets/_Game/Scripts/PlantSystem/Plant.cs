@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public abstract class Plant : MonoBehaviour {
+    public TypePlant typePlant;
     public int maxHP = 100;
     protected int currentHP;
     public bool isDead = false;

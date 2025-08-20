@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PeashooterPlant : Plant {
     public GameObject bulletPrefab;
@@ -7,6 +8,7 @@ public class PeashooterPlant : Plant {
 
     private float timer;
 
+    public int time_Attacks = 1;
     void Update() {
         timer += Time.deltaTime;
         if (timer >= attackRate) {
@@ -16,9 +18,14 @@ public class PeashooterPlant : Plant {
     }
 
     public override void Attack() {
+        StartCoroutine(AttackFourTime());
+    }
+    private IEnumerator AttackFourTime() {
         if (bulletPrefab && shootPoint) {
-            Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            Debug.Log("Peashooter bắn!");
+            for (int i = 0; i < time_Attacks; i++) {
+                Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+                yield return new WaitForSeconds(attackRate / 6);
+            }
         }
     }
 }

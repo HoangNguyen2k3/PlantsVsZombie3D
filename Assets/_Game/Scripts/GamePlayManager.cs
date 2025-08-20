@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -30,6 +31,9 @@ public class GamePlayManager : MonoBehaviour {
     public GameObject losingGameUI;
     public bool isEndGame = false;
 
+    public TextMeshProUGUI textAnnouce;
+
+    public List<PlantMapping> list_PlantMapping = new();
     private void Awake() {
         Ins = this;
     }
@@ -55,11 +59,19 @@ public class GamePlayManager : MonoBehaviour {
                     GridCell gridcell = hit.collider.GetComponentInParent<GridCell>();
                     if (gridcell != null && selectedPlantCard != null && selectedPlantCard.isCoolDown == false) {
                         if (!gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
-                            Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
+                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
                             ChangeNumSun(-selectedPlantCard.price);
+
+                            gridcell.currentPlant = temp;
+                            temp.gameObject.layer = gridCellLayer;
+                            temp.transform.parent = gridcell.transform;
+
                             selectedPlantCard.Cooldown();
                             selectedPlantCard = null;
                             InactiveAllCurrentPlant();
+                        }
+                        else if (gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
+                            ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
                         }
                     }
                 }
@@ -112,6 +124,59 @@ public class GamePlayManager : MonoBehaviour {
     public void PlayAgain() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void ProcessMergePlant(TypePlant handPlant, TypePlant groundPlant, GridCell gridCell) {
+        if (handPlant == TypePlant.SunFlower && groundPlant == TypePlant.SunFlower) {
+            SpawnMergePlant(gridCell, TypePlant.TwinSunFlower);
+        }
+        else if (handPlant == TypePlant.PeaShoot && groundPlant == TypePlant.PeaShoot) {
+            SpawnMergePlant(gridCell, TypePlant.Repeter);
+        }
+        else if (handPlant == TypePlant.Repeter && groundPlant == TypePlant.Repeter) {
+            SpawnMergePlant(gridCell, TypePlant.GatlingGun);
+        }
+        else if ((handPlant == TypePlant.PeaShoot && groundPlant == TypePlant.SunFlower)
+            || (handPlant == TypePlant.SunFlower && groundPlant == TypePlant.PeaShoot)) {
+            SpawnMergePlant(gridCell, TypePlant.SunGun);
+        }
+        else if ((handPlant == TypePlant.CherryBomb && groundPlant == TypePlant.SunFlower)
+            || (handPlant == TypePlant.SunFlower && groundPlant == TypePlant.CherryBomb)) {
+            SpawnMergePlant(gridCell, TypePlant.SunBomb);
+        }
+        else {
+            Color c = textAnnouce.color;
+            c.a = 0;
+            textAnnouce.color = c;
+
+            textAnnouce.DOFade(1, 0.05f).OnComplete(() => {
+                textAnnouce.DOFade(0, 0.5f);
+            });
+        }
+    }
+
+    private void SpawnMergePlant(GridCell gridCell, TypePlant typePlant) {
+        Plant plant = GetPlantMapping(typePlant);
+        if (plant != null) {
+            Destroy(gridCell.currentPlant.gameObject);
+            gridCell.currentPlant = null;
+            Plant temp = Instantiate(plant, gridCell.transform.position, plant.transform.rotation);
+            temp.transform.parent = gridCell.transform;
+            temp.gameObject.layer = gridCellLayer;
+            gridCell.currentPlant = temp;
+        }
+        else {
+            Debug.LogWarning("Lỗi rồi");
+        }
+    }
+
+    public Plant GetPlantMapping(TypePlant typePlant) {
+        foreach (var item in list_PlantMapping) {
+            if (item.type == typePlant) {
+                return item.prefab;
+            }
+        }
+        return null;
+    }
+
 }
 
 [System.Serializable]
@@ -121,5 +186,16 @@ public enum TypePlant {
     PotatoMine,
     WallNut,
     CherryBomb,
-    Squash
+    Squash,
+    TwinSunFlower,
+    Repeter,
+    GatlingGun,
+    SunGun,
+    SunBomb
 }
+[System.Serializable]
+public class PlantMapping {
+    public TypePlant type;
+    public Plant prefab;
+}
+

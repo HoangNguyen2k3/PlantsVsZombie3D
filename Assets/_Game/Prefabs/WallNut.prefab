@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a071911dd6850c469dfd7d19f572364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typePlant: 3
   maxHP: 200
   isDead: 0
 --- !u!1 &1224853934348728
