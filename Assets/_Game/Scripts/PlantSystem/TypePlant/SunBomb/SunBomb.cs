@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class SunBomb : Plant {
-    public float damage = 5f;
+    public int damage = 5;
     public float explosionRadius = 3f;
     public GameObject explodePrefab;
     public float scaleTarget = 0.8f;
@@ -36,7 +36,7 @@ public class SunBomb : Plant {
                 // Gây sát thương (giả sử Enemy có script "EnemyHealth" với hàm "TakeDamage")
                 ZombieController health = hit.GetComponent<ZombieController>();
                 if (health != null) {
-                    health.TakeDamage(5);
+                    health.TakeDamage(damage);
                 }
             }
         }

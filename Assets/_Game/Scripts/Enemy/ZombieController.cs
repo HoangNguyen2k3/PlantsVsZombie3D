@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ZombieController : MonoBehaviour
-{
+public class ZombieController : MonoBehaviour {
     [Header("====== Base ======")]
     public float speed = 0.8f;
     public int maxHealth = 10;
@@ -28,8 +27,7 @@ public class ZombieController : MonoBehaviour
     private GameObject targetPlant;
     private Coroutine movePatternRoutine;
     private Animator animator;
-    public void Start()
-    {
+    public void Start() {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         movePatternRoutine = StartCoroutine(BurstWalkPattern());
@@ -38,17 +36,14 @@ public class ZombieController : MonoBehaviour
     }
 
 
-    private void Update()
-    {
+    private void Update() {
         if (isDead) return;
 
-        if (isAttacking && targetPlant == null)
-        {
+        if (isAttacking && targetPlant == null) {
             EndAttack();
         }
 
-        if (!isAttacking)
-        {
+        if (!isAttacking) {
             animator.SetBool("isWalking", true);
             transform.Translate(-Vector3.right * (speed * currentMultiplier) * Time.deltaTime);
             DetectPlant();
@@ -57,16 +52,13 @@ public class ZombieController : MonoBehaviour
 
     }
 
-    private IEnumerator BurstWalkPattern()
-    {
-        while (!isDead)
-        {
+    private IEnumerator BurstWalkPattern() {
+        while (!isDead) {
             //fast
             currentMultiplier = fastMultiplier;
             float t = 0f;
 
-            while (t < fastDuration && !isDead)
-            {
+            while (t < fastDuration && !isDead) {
                 t += Time.deltaTime;
                 yield return null;
             }
@@ -74,43 +66,36 @@ public class ZombieController : MonoBehaviour
             //slow
             currentMultiplier = slowMultiplier;
             t = 0f;
-            while (t < slowDuration && !isDead)
-            {
+            while (t < slowDuration && !isDead) {
                 t += Time.deltaTime;
                 yield return null;
             }
         }
     }
 
-    private void DetectPlant()
-    {
+    private void DetectPlant() {
         if (isAttacking) return;
 
-        if (Physics.Raycast(transform.position, -Vector3.right, out RaycastHit hit, attackRange))
-        {
-            if (hit.collider.CompareTag("Plant") && hit.collider.isTrigger == false)
-            {
+        if (Physics.Raycast(transform.position, -Vector3.right, out RaycastHit hit, attackRange)) {
+            if (hit.collider.CompareTag("Plant") && hit.collider.isTrigger == false) {
                 targetPlant = hit.collider.gameObject;
                 StartCoroutine(AttackPlant(targetPlant));
             }
         }
     }
 
-    IEnumerator AttackPlant(GameObject plant)
-    {
+    IEnumerator AttackPlant(GameObject plant) {
         isAttacking = true;
         animator.SetBool("isWalking", false);
         animator.SetBool("isAttacking", true);
 
         Plant plantHealth = plant.GetComponent<Plant>();
-        if (plantHealth == null)
-        {
+        if (plantHealth == null) {
             EndAttack();
             yield break;
         }
 
-        while (!isDead && plantHealth != null && !plantHealth.isDead)
-        {
+        while (!isDead && plantHealth != null && !plantHealth.isDead) {
             plantHealth.TakeDamage(damagePerHit);
             yield return new WaitForSeconds(attackInterval);
         }
@@ -118,29 +103,25 @@ public class ZombieController : MonoBehaviour
         EndAttack();
     }
 
-    private void EndAttack()
-    {
+    private void EndAttack() {
         isAttacking = false;
         animator.SetBool("isAttacking", false);
         animator.SetBool("isWalking", true);
     }
 
-    public void TakeDamage(int amount)
-    {
+    public void TakeDamage(int amount) {
         if (isDead) return;
 
         currentHealth -= amount;
 
         Debug.Log("Zombie HP: " + currentHealth);
 
-        if (currentHealth <= 0)
-        {
+        if (currentHealth <= 0) {
             Die();
         }
     }
 
-    void Die()
-    {
+    void Die() {
         isDead = true;
         animator.SetBool("isDead", true);
         animator.SetBool("isWalking", false);
@@ -153,5 +134,10 @@ public class ZombieController : MonoBehaviour
     }
     private void OnDestroy() {
         GamePlayManager.Ins.numEnemyCurrentInMap--;
+    }
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("EnterGarden")) {
+            transform.position -= new Vector3(0, 0.28f, 0);
+        }
     }
 }

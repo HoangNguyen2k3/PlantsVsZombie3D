@@ -95,8 +95,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81409990216341768}
-  - component: {fileID: 7795122085568253269}
-  - component: {fileID: 2606298166646937254}
   m_Layer: 0
   m_Name: CherryBomb
   m_TagString: Untagged
@@ -132,46 +130,6 @@ Transform:
   - {fileID: 5218914837210250941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &7795122085568253269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3224330059588877609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5966161aa5bd143a8a073429520ea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typePlant: 4
-  maxHP: 100
-  isDead: 0
-  damage: 10
-  explosionRadius: 3
-  explodePrefab: {fileID: 118354, guid: deddf22d4e65a7447b851e66ff6c334c, type: 3}
-  scaleTarget: 1.8
---- !u!135 &2606298166646937254
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3224330059588877609}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.22
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3655837310987847541
 GameObject:
   m_ObjectHideFlags: 0

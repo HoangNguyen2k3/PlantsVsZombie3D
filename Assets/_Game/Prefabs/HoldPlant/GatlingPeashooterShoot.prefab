@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390497682452556559}
-  - component: {fileID: 1024854616191402604}
-  - component: {fileID: 6113555607807896873}
   m_Layer: 0
   m_Name: GatlingPeashooterShoot
   m_TagString: Plant
@@ -35,46 +33,6 @@ Transform:
   - {fileID: 6625815718335192296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1024854616191402604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652987080564841897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db67ec41e551144eb34e148c4857fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typePlant: 8
-  maxHP: 100
-  isDead: 0
-  bulletPrefab: {fileID: 2034076795885031386, guid: 4c7ea5c448eeea944a424b0e3178ee64, type: 3}
-  shootPoint: {fileID: 7125100721849769419}
-  attackRate: 1.5
-  time_Attacks: 4
---- !u!65 &6113555607807896873
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652987080564841897}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.82, y: 1.47, z: 0.91}
-  m_Center: {x: 2.019484e-28, y: 0.5, z: 0.000000059604645}
 --- !u!1 &7754412384095881863
 GameObject:
   m_ObjectHideFlags: 0

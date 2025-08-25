@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePlayManager : MonoBehaviour {
     public static GamePlayManager Ins;
@@ -34,6 +35,12 @@ public class GamePlayManager : MonoBehaviour {
     public TextMeshProUGUI textAnnouce;
 
     public List<PlantMapping> list_PlantMapping = new();
+
+    [Header("------------Using Rake-----------")]
+    public GameObject holdPlant;
+    public bool using_rake = false;
+    public Button btn_rake;
+    public GameObject obj_plantCardChoice;
     private void Awake() {
         Ins = this;
     }
@@ -69,10 +76,24 @@ public class GamePlayManager : MonoBehaviour {
                             selectedPlantCard.Cooldown();
                             selectedPlantCard = null;
                             InactiveAllCurrentPlant();
+                            Destroy(holdPlant);
                         }
-                        else if (gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
+                        else if (using_rake == false && gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
                             ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
                         }
+                        else if (using_rake == true && gridcell.isOccupied) {
+                            TakeHoldPlant(gridcell.currentPlant.typePlant);
+                            selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
+                            Destroy(gridcell.currentPlant);
+                            gridcell.currentPlant = null;
+                        }
+                    }
+                    else if (gridcell != null && using_rake == true && gridcell.isOccupied) {
+                        TakeHoldPlant(gridcell.currentPlant.typePlant);
+                        ClickUsingRake();
+                        selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
+                        Destroy(gridcell.currentPlant.gameObject);
+                        gridcell.currentPlant = null;
                     }
                 }
 
@@ -95,6 +116,16 @@ public class GamePlayManager : MonoBehaviour {
     }
     public void ChangeCurrentPlant(PlantCard plant) {
         selectedPlantCard = plant;
+        if (holdPlant != null) {
+            Destroy(holdPlant.gameObject);
+        }
+        TakeHoldPlant(plant.plantType.typePlant);
+    }
+    public void TakeHoldPlant(TypePlant type) {
+        GameObject temp = GetPlantHoldMapping(type);
+        holdPlant = Instantiate(temp, posHoldPlant);
+        holdPlant.transform.localPosition = Vector3.zero;
+        holdPlant.transform.localScale /= 3;
     }
     public void InactiveAllCurrentPlant() {
         foreach (var item in list_PlantCard) {
@@ -125,6 +156,7 @@ public class GamePlayManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void ProcessMergePlant(TypePlant handPlant, TypePlant groundPlant, GridCell gridCell) {
+        bool merge_success = true;
         if (handPlant == TypePlant.SunFlower && groundPlant == TypePlant.SunFlower) {
             SpawnMergePlant(gridCell, TypePlant.TwinSunFlower);
         }
@@ -143,6 +175,7 @@ public class GamePlayManager : MonoBehaviour {
             SpawnMergePlant(gridCell, TypePlant.SunBomb);
         }
         else {
+            merge_success = false;
             Color c = textAnnouce.color;
             c.a = 0;
             textAnnouce.color = c;
@@ -150,6 +183,12 @@ public class GamePlayManager : MonoBehaviour {
             textAnnouce.DOFade(1, 0.05f).OnComplete(() => {
                 textAnnouce.DOFade(0, 0.5f);
             });
+        }
+        if (merge_success) {
+            selectedPlantCard.Cooldown();
+            selectedPlantCard = null;
+            InactiveAllCurrentPlant();
+            Destroy(holdPlant);
         }
     }
 
@@ -176,7 +215,39 @@ public class GamePlayManager : MonoBehaviour {
         }
         return null;
     }
-
+    public GameObject GetPlantHoldMapping(TypePlant typePlant) {
+        foreach (var item in list_PlantMapping) {
+            if (item.type == typePlant) {
+                return item.plantHold;
+            }
+        }
+        return null;
+    }
+    public PlantCard GetPlantCardMapping(TypePlant typePlant) {
+        foreach (var item in list_PlantMapping) {
+            if (item.type == typePlant) {
+                return item.plantCard;
+            }
+        }
+        return null;
+    }
+    public void ClickUsingRake() {
+        if (selectedPlantCard != null) {
+            return;
+        }
+        using_rake = !using_rake;
+        if (using_rake) {
+            selectedPlantCard = null;
+            InactiveAllCurrentPlant();
+            obj_plantCardChoice.gameObject.SetActive(false);
+            btn_rake.GetComponent<Image>().color = Color.green;
+            Destroy(holdPlant);
+        }
+        else {
+            obj_plantCardChoice.gameObject.SetActive(true);
+            btn_rake.GetComponent<Image>().color = Color.white;
+        }
+    }
 }
 
 [System.Serializable]
@@ -191,11 +262,14 @@ public enum TypePlant {
     Repeter,
     GatlingGun,
     SunGun,
-    SunBomb
+    SunBomb,
+    GiftPlant
 }
 [System.Serializable]
 public class PlantMapping {
     public TypePlant type;
     public Plant prefab;
+    public GameObject plantHold;
+    public PlantCard plantCard;
 }
 

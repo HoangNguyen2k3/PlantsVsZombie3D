@@ -24,7 +24,7 @@ public class PeashooterPlant : Plant {
         if (bulletPrefab && shootPoint) {
             for (int i = 0; i < time_Attacks; i++) {
                 Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-                yield return new WaitForSeconds(attackRate / 6);
+                yield return new WaitForSeconds(attackRate / 12);
             }
         }
     }

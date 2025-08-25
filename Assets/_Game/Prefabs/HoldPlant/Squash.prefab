@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4509951826653491}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DropSunSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,10 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930171448816985}
-  - component: {fileID: 65118473879862686}
-  - component: {fileID: 95603902337798553}
-  - component: {fileID: 2692676261629889491}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Squash
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -155,70 +152,6 @@ Transform:
   - {fileID: 2931094831591407528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!65 &65118473879862686
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880546888113718}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!95 &95603902337798553
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880546888113718}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46b861be5e4f965498aaf4b3ed6c6c4c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2692676261629889491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880546888113718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac90c1522ad54468ae3050355a30b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typePlant: 5
-  maxHP: 100
-  isDead: 0
-  damage: 10
-  explosionRadius: 1.2
-  posAttack: {x: 0, y: 0, z: 0}
-  jumpHeight: 5
-  moveDuration: 0.5
-  explosion: {fileID: 149100, guid: 7f20fac9178da8348949f8493ae38a85, type: 3}
 --- !u!1 &1979681100400335
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4773324878171906}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RaycastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +196,7 @@ GameObject:
   - component: {fileID: 7342981125120323846}
   - component: {fileID: 2635334552249515859}
   - component: {fileID: 5947039250075439654}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,8 +290,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.2971575, y: 1, z: 0.9999997}
-  m_Center: {x: -0.6485788, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5947039250075439654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,4 +304,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cfe288ce9c0144a9d8a0e14fcd614c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squash: {fileID: 2692676261629889491}
+  squash: {fileID: 0}

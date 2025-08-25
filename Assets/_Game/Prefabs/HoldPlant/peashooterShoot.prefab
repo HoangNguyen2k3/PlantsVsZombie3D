@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8230781702735592959}
-  - component: {fileID: 6163081188034612582}
-  - component: {fileID: 7888311165046753232}
   m_Layer: 0
   m_Name: peashooterShoot
   m_TagString: Plant
@@ -35,46 +33,6 @@ Transform:
   - {fileID: 5623268243500183093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &6163081188034612582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989383990290718801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db67ec41e551144eb34e148c4857fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typePlant: 1
-  maxHP: 100
-  isDead: 0
-  bulletPrefab: {fileID: 2034076795885031386, guid: 4c7ea5c448eeea944a424b0e3178ee64, type: 3}
-  shootPoint: {fileID: 5715718630699116441}
-  attackRate: 1.5
-  time_Attacks: 1
---- !u!65 &7888311165046753232
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989383990290718801}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.82, y: 1.47, z: 0.91}
-  m_Center: {x: 2.019484e-28, y: 0.5, z: 0.000000059604645}
 --- !u!1 &8485711700762519056
 GameObject:
   m_ObjectHideFlags: 0
