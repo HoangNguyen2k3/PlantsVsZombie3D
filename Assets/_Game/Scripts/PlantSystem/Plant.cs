@@ -17,7 +17,7 @@ public abstract class Plant : MonoBehaviour {
         }
     }
 
-    protected virtual void Die() {
+    public virtual void Die() {
         // Mặc định: phá hủy object
         Destroy(gameObject);
     }

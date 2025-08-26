@@ -174,6 +174,10 @@ public class GamePlayManager : MonoBehaviour {
             || (handPlant == TypePlant.SunFlower && groundPlant == TypePlant.CherryBomb)) {
             SpawnMergePlant(gridCell, TypePlant.SunBomb);
         }
+        else if ((handPlant == TypePlant.CherryBomb && groundPlant == TypePlant.WallNut)
+    || (handPlant == TypePlant.WallNut && groundPlant == TypePlant.CherryBomb)) {
+            SpawnMergePlant(gridCell, TypePlant.CherryNut);
+        }
         else {
             merge_success = false;
             Color c = textAnnouce.color;
@@ -263,7 +267,9 @@ public enum TypePlant {
     GatlingGun,
     SunGun,
     SunBomb,
-    GiftPlant
+    GiftPlant,
+    SnowPea,
+    CherryNut
 }
 [System.Serializable]
 public class PlantMapping {

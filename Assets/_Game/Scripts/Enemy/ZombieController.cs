@@ -27,11 +27,14 @@ public class ZombieController : MonoBehaviour {
     private GameObject targetPlant;
     private Coroutine movePatternRoutine;
     private Animator animator;
+
+    private float halfSpeed = 0f;
+    public GameObject slowEffect;
     public void Start() {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         movePatternRoutine = StartCoroutine(BurstWalkPattern());
-
+        halfSpeed = speed / 2;
         animator.SetBool("isWalking", true);
     }
 
@@ -131,6 +134,19 @@ public class ZombieController : MonoBehaviour {
         StopAllCoroutines();
 
         Destroy(gameObject, 1f);
+    }
+    private Coroutine slowRoutine;
+
+    public void ApplySlow() {
+        if (slowRoutine != null) StopCoroutine(slowRoutine);
+        slowRoutine = StartCoroutine(EffectSlowEnemy());
+    }
+    public IEnumerator EffectSlowEnemy() {
+        speed = halfSpeed;
+        slowEffect.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        speed = halfSpeed * 2;
+        slowEffect.SetActive(false);
     }
     private void OnDestroy() {
         GamePlayManager.Ins.numEnemyCurrentInMap--;
