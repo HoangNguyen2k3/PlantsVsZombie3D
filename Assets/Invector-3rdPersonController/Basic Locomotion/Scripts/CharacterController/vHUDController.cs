@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Invector.vCharacterController
-{
-    public class vHUDController : MonoBehaviour
-    {
+namespace Invector.vCharacterController {
+    public class vHUDController : MonoBehaviour {
         #region General Variables
 
         #region Health/Stamina Variables
@@ -45,12 +43,9 @@ namespace Invector.vCharacterController
         #endregion
 
         private static vHUDController _instance;
-        public static vHUDController instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
+        public static vHUDController instance {
+            get {
+                if (_instance == null) {
                     _instance = GameObject.FindObjectOfType<vHUDController>();
                     //Tell unity not to destroy this object when loading a new scene
                     //DontDestroyOnLoad(_instance.gameObject);
@@ -59,39 +54,33 @@ namespace Invector.vCharacterController
             }
         }
 
-        void Start()
-        {
+        void Start() {
             InitFadeText();
             if (debugPanel != null)
                 debugText = debugPanel.GetComponentInChildren<Text>();
         }
 
-        public void Init(vThirdPersonController cc)
-        {
+        public void Init(vThirdPersonController cc) {
             cc.onDead.AddListener(OnDead);
             cc.onReceiveDamage.AddListener(EnableDamageSprite);
-            damageImage.color = new Color(0f, 0f, 0f, 0f);
-            if (cc.maxHealth != healthSlider.maxValue)
-            {
+            //damageImage.color = new Color(0f, 0f, 0f, 0f);
+            if (cc.maxHealth != healthSlider.maxValue) {
                 healthSlider.maxValue = cc.maxHealth;
                 healthSlider.onValueChanged.Invoke(healthSlider.value);
             }
             healthSlider.value = cc.currentHealth;
-            if (cc.maxStamina != staminaSlider.maxValue)
-            {
+            if (cc.maxStamina != staminaSlider.maxValue) {
                 staminaSlider.maxValue = cc.maxStamina;
                 staminaSlider.onValueChanged.Invoke(staminaSlider.value);
             }
             staminaSlider.value = cc.currentStamina;
         }
 
-        private void OnDead(GameObject arg0)
-        {
+        private void OnDead(GameObject arg0) {
             ShowText("You are Dead!");
         }
 
-        public virtual void UpdateHUD(vThirdPersonController cc)
-        {
+        public virtual void UpdateHUD(vThirdPersonController cc) {
             UpdateDebugWindow(cc);
             UpdateSliders(cc);
             ChangeInputDisplay();
@@ -99,10 +88,8 @@ namespace Invector.vCharacterController
             FadeEffect();
         }
 
-        public void ShowText(string message, float textTime = 2f, float fadeTime = 0.5f)
-        {
-            if (fadeText != null && !fade)
-            {
+        public void ShowText(string message, float textTime = 2f, float fadeTime = 0.5f) {
+            if (fadeText != null && !fade) {
                 fadeText.text = message;
                 textDuration = textTime;
                 fadeDuration = fadeTime;
@@ -110,8 +97,7 @@ namespace Invector.vCharacterController
                 timer = 0f;
                 fade = true;
             }
-            else if (fadeText != null)
-            {
+            else if (fadeText != null) {
                 fadeText.text += "\n" + message;
                 textDuration = textTime;
                 fadeDuration = fadeTime;
@@ -120,10 +106,8 @@ namespace Invector.vCharacterController
             }
         }
 
-        public void ShowText(string message)
-        {
-            if (fadeText != null && !fade)
-            {
+        public void ShowText(string message) {
+            if (fadeText != null && !fade) {
                 fadeText.text = message;
                 textDuration = 2f;
                 fadeDuration = 0.5f;
@@ -131,8 +115,7 @@ namespace Invector.vCharacterController
                 timer = 0f;
                 fade = true;
             }
-            else if (fadeText != null)
-            {
+            else if (fadeText != null) {
                 fadeText.text += "\n" + message;
                 textDuration = 2f;
                 fadeDuration = 0.5f;
@@ -141,26 +124,21 @@ namespace Invector.vCharacterController
             }
         }
 
-        void UpdateSliders(vThirdPersonController cc)
-        {
-            if (cc.maxHealth != healthSlider.maxValue)
-            {
+        void UpdateSliders(vThirdPersonController cc) {
+            if (cc.maxHealth != healthSlider.maxValue) {
                 healthSlider.maxValue = Mathf.Lerp(healthSlider.maxValue, cc.maxHealth, 2f * Time.fixedDeltaTime);
                 healthSlider.onValueChanged.Invoke(healthSlider.value);
             }
             healthSlider.value = Mathf.Lerp(healthSlider.value, cc.currentHealth, 2f * Time.fixedDeltaTime);
-            if (cc.maxStamina != staminaSlider.maxValue)
-            {
+            if (cc.maxStamina != staminaSlider.maxValue) {
                 staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, 2f * Time.fixedDeltaTime);
                 staminaSlider.onValueChanged.Invoke(staminaSlider.value);
             }
             staminaSlider.value = cc.currentStamina;
         }
 
-        public void ShowDamageSprite()
-        {
-            if (damaged)
-            {
+        public void ShowDamageSprite() {
+            if (damaged) {
                 damaged = false;
                 if (damageImage != null)
                     damageImage.color = flashColour;
@@ -169,34 +147,29 @@ namespace Invector.vCharacterController
                 damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
 
-        public void EnableDamageSprite(vDamage damage)
-        {
+        public void EnableDamageSprite(vDamage damage) {
             if (damageImage != null)
                 damageImage.enabled = true;
             damaged = true;
         }
 
-        void UpdateDebugWindow(vThirdPersonController cc)
-        {
-            if (cc.debugWindow)
-            {
+        void UpdateDebugWindow(vThirdPersonController cc) {
+            if (cc.debugWindow) {
                 if (debugPanel != null && !debugPanel.activeSelf)
                     debugPanel.SetActive(true);
                 if (debugText)
                     debugText.text = cc.DebugInfo();
             }
-            else
-            {
+            else {
                 if (debugPanel != null && debugPanel.activeSelf)
                     debugPanel.SetActive(false);
             }
         }
 
-        void ChangeInputDisplay()
-        {
+        void ChangeInputDisplay() {
             if (displayControls == null) return;
 #if MOBILE_INPUT
-		displayControls.enabled = false;
+            displayControls.enabled = false;
 #else
             if (controllerInput)
                 displayControls.sprite = joystickControls;
@@ -205,10 +178,8 @@ namespace Invector.vCharacterController
 #endif
         }
 
-        void InitFadeText()
-        {
-            if (fadeText != null)
-            {
+        void InitFadeText() {
+            if (fadeText != null) {
                 fadeText.verticalOverflow = VerticalWrapMode.Overflow;
                 startColor = fadeText.color;
                 endColor.a = 0f;
@@ -218,30 +189,24 @@ namespace Invector.vCharacterController
                 Debug.Log("Please assign a Text object on the field Fade Text");
         }
 
-        void FadeEffect()
-        {
-            if (fadeText != null)
-            {
-                if (fade)
-                {
+        void FadeEffect() {
+            if (fadeText != null) {
+                if (fade) {
                     fadeText.color = Color.Lerp(endColor, startColor, timer);
 
                     if (timer < 1)
                         timer += Time.deltaTime / fadeDuration;
 
-                    if (fadeText.color.a >= 1)
-                    {
+                    if (fadeText.color.a >= 1) {
                         fade = false;
                         timer = 0f;
                     }
                 }
-                else
-                {
+                else {
                     if (fadeText.color.a >= 1)
                         durationTimer += Time.deltaTime;
 
-                    if (durationTimer >= textDuration)
-                    {
+                    if (durationTimer >= textDuration) {
                         fadeText.color = Color.Lerp(startColor, endColor, timer);
                         if (timer < 1)
                             timer += Time.deltaTime / fadeDuration;
