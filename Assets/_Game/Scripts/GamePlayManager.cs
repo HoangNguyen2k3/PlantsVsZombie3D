@@ -41,6 +41,12 @@ public class GamePlayManager : MonoBehaviour {
     public bool using_rake = false;
     public Button btn_rake;
     public GameObject obj_plantCardChoice;
+
+    float deltaTime = 0;
+    public TextMeshProUGUI fpsText;
+
+    public GameObject fakePlant;
+    private GridCell gridcell1;
     private void Awake() {
         Ins = this;
     }
@@ -50,6 +56,9 @@ public class GamePlayManager : MonoBehaviour {
         selectedPlantCard = null;
     }
     void Update() {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        fpsText.text = Mathf.Ceil(fps).ToString() + " FPS";
         if (isEndGame) { return; }
         time += Time.deltaTime;
         if (startSpawn == false && time > timeBeforeSpawnZombie) {
@@ -66,17 +75,20 @@ public class GamePlayManager : MonoBehaviour {
                     GridCell gridcell = hit.collider.GetComponentInParent<GridCell>();
                     if (gridcell != null && selectedPlantCard != null && selectedPlantCard.isCoolDown == false) {
                         if (!gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
-                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
-                            ChangeNumSun(-selectedPlantCard.price);
+                            fakePlant.SetActive(true);
+                            fakePlant.transform.position = gridcell.transform.position + new Vector3(0, 0.5f, 0);
+                            gridcell1 = gridcell;
+                            /*                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
+                                                        ChangeNumSun(-selectedPlantCard.price);
 
-                            gridcell.currentPlant = temp;
-                            temp.gameObject.layer = gridCellLayer;
-                            temp.transform.parent = gridcell.transform;
+                                                        gridcell.currentPlant = temp;
+                                                        temp.gameObject.layer = gridCellLayer;
+                                                        temp.transform.parent = gridcell.transform;
 
-                            selectedPlantCard.Cooldown();
-                            selectedPlantCard = null;
-                            InactiveAllCurrentPlant();
-                            Destroy(holdPlant);
+                                                        selectedPlantCard.Cooldown();
+                                                        selectedPlantCard = null;
+                                                        InactiveAllCurrentPlant();
+                                                        Destroy(holdPlant);*/
                         }
                         else if (using_rake == false && gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
                             ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
@@ -103,6 +115,20 @@ public class GamePlayManager : MonoBehaviour {
             WinningGame();
             isEndGame = true;
         }
+    }
+    public void PlantReal() {
+        fakePlant.SetActive(false);
+        Plant temp = Instantiate(selectedPlantCard.plantType, gridcell1.transform.position, selectedPlantCard.plantType.transform.rotation);
+        ChangeNumSun(-selectedPlantCard.price);
+
+        gridcell1.currentPlant = temp;
+        temp.gameObject.layer = gridCellLayer;
+        temp.transform.parent = gridcell1.transform;
+
+        selectedPlantCard.Cooldown();
+        selectedPlantCard = null;
+        InactiveAllCurrentPlant();
+        Destroy(holdPlant);
     }
     bool IsPointerOverUI() {
 #if UNITY_ANDROID || UNITY_IOS
