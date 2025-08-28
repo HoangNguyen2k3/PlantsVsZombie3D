@@ -245,8 +245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 44.662327}
-  m_SizeDelta: {x: 0, y: -89.32465}
+  m_AnchoredPosition: {x: 0, y: 18.189577}
+  m_SizeDelta: {x: 0, y: -36.379154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1978566828579445655
 CanvasRenderer:
@@ -591,5 +591,5 @@ MonoBehaviour:
   price: 350
   float_timeCoolDown: 10
   trans_coolDown: {fileID: 766704002519980693}
-  isCoolDown: 0
+  isCoolDown: 1
   plantMysTypes: []
