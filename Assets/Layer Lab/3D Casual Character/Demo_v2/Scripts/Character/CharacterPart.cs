@@ -160,8 +160,21 @@ namespace Layer_lab._3D_Casual_Character.Demo2
            
         }
         #endregion
-        
- 
+        //Update 
+        public void SetPartByIndex(int index)
+        {
+            if (index < 0 || index >= CurrentPartsObjects.Count)
+            {
+                CurrentIndex = -1;
+                HideAllParts();
+                return;
+            }
+
+            CurrentIndex = index;
+            SetParts();
+        }
+
+
 
     }
 }
