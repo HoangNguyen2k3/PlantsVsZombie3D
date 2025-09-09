@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Layer_lab._3D_Casual_Character.Demo2
 {
@@ -13,6 +14,8 @@ namespace Layer_lab._3D_Casual_Character.Demo2
         [field: SerializeField] private AnimationBar AnimationBar { get; set; }
         private ItemSlot[] ItemSlot { get; set; }
         [field: SerializeField] public ItemFocusSlot ItemFocusSlot { get; set; }
+
+        [SerializeField] protected ChangeScene changeScene;
 
         public Sprite[] spriteActiveIcons;
         public Sprite[] spriteBgs;
@@ -82,6 +85,39 @@ namespace Layer_lab._3D_Casual_Character.Demo2
         {
             return Resources.Load<Sprite>(spriteName);
         }
+        //Update
+        public virtual void OnClick_Play()
+        {
+            Debug.Log("👉 OnClick_Play được gọi");
 
+            // Kiểm tra Demo2Character.Instance
+            if (Demo2Character.Instance == null)
+            {
+                Debug.LogError("❌ Demo2Character.Instance = null");
+                return;
+            }
+            else
+            {
+                Debug.Log("✅ Demo2Character.Instance OK");
+            }
+
+            // Kiểm tra CharacterDataHolder.Instance
+            if (CharacterDataHolder.Instance == null)
+            {
+                Debug.LogError("❌ CharacterDataHolder.Instance = null");
+                return;
+            }
+            else
+            {
+                Debug.Log("✅ CharacterDataHolder.Instance OK");
+            }
+
+            // Lấy dữ liệu part
+            var partsData = Demo2Character.Instance.CurrentPartsTypeAndNameList();
+            CharacterDataHolder.Instance.SelectedCharacterData = partsData;
+            Debug.Log($"📦 Đã lưu {partsData.Count} parts vào CharacterDataHolder");
+
+            changeScene.ChangeNewScene("Thong");
+        }
     }
 }
