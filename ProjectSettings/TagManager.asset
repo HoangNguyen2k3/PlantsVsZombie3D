@@ -41,10 +41,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GridCell
   - Water
   - UI
-  - 
+  - EnablePlant
   - 
   - Player
   - Enemy

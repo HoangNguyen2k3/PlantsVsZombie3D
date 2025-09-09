@@ -15,6 +15,7 @@ public class GamePlayManager : MonoBehaviour {
     public GridManager gridManager;
     public PlantCard selectedPlantCard;
     public LayerMask gridCellLayer; //Layer của grid cell
+    public LayerMask enablePlantLayer;
     public List<PlantCard> list_PlantCard = new();
     [Header("-----------Spawn Zombie------------")]
     public float timeBeforeSpawnZombie = 10f;
@@ -47,10 +48,13 @@ public class GamePlayManager : MonoBehaviour {
 
     public GameObject fakePlant;
     private GridCell gridcell1;
+
     private void Awake() {
         Ins = this;
     }
     private void Start() {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
         numEnemyCurrentInMap = numSpawnMax;
         text_numSun.text = currentSun.ToString();
         selectedPlantCard = null;
@@ -65,58 +69,75 @@ public class GamePlayManager : MonoBehaviour {
             startSpawn = true;
             StartCoroutine(SpawnEnemy());
         }
-        if (Input.GetMouseButtonDown(0)) {
-            if (IsPointerOverUI()) {
-
-            }
-            else {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit)) {
-                    GridCell gridcell = hit.collider.GetComponentInParent<GridCell>();
-                    if (gridcell != null && selectedPlantCard != null && selectedPlantCard.isCoolDown == false) {
-                        if (!gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
-                            fakePlant.SetActive(true);
-                            fakePlant.transform.position = gridcell.transform.position + new Vector3(0, 0.5f, 0);
-                            gridcell1 = gridcell;
-                            /*                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
-                                                        ChangeNumSun(-selectedPlantCard.price);
-
-                                                        gridcell.currentPlant = temp;
-                                                        temp.gameObject.layer = gridCellLayer;
-                                                        temp.transform.parent = gridcell.transform;
-
-                                                        selectedPlantCard.Cooldown();
-                                                        selectedPlantCard = null;
-                                                        InactiveAllCurrentPlant();
-                                                        Destroy(holdPlant);*/
-                        }
-                        else if (using_rake == false && gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
-                            ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
-                        }
-                        else if (using_rake == true && gridcell.isOccupied) {
-                            TakeHoldPlant(gridcell.currentPlant.typePlant);
-                            selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
-                            Destroy(gridcell.currentPlant);
-                            gridcell.currentPlant = null;
-                        }
-                    }
-                    else if (gridcell != null && using_rake == true && gridcell.isOccupied) {
-                        TakeHoldPlant(gridcell.currentPlant.typePlant);
-                        ClickUsingRake();
-                        selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
-                        Destroy(gridcell.currentPlant.gameObject);
-                        gridcell.currentPlant = null;
-                    }
-                }
-
-            }
+#if UNITY_ANDROID || UNITY_IOS
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+            if (IsPointerOverUI()) return;
+            HandleTouch();
         }
+#else
+    if (Input.GetMouseButtonDown(0))
+    {
+        if (IsPointerOverUI()) return;
+        HandleTouch();
+    }
+#endif
+        /*        if (Input.GetMouseButtonDown(0)) {
+                    if (IsPointerOverUI()) {
+
+                    }
+                    else {
+                        HandleTouch();
+                    }
+                }*/
         if (numEnemyCurrentInMap == 0) {
             WinningGame();
             isEndGame = true;
         }
     }
+
+    private void HandleTouch() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit)) {
+            GridCell gridcell = hit.collider.GetComponentInParent<GridCell>();
+            if (gridcell != null && selectedPlantCard != null && selectedPlantCard.isCoolDown == false) {
+                if (!gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
+                    fakePlant.SetActive(true);
+                    fakePlant.transform.position = gridcell.transform.position + new Vector3(0, 0.5f, 0);
+                    gridcell1 = gridcell;
+                    /*                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
+                                                ChangeNumSun(-selectedPlantCard.price);
+
+                                                gridcell.currentPlant = temp;
+                                                temp.gameObject.layer = gridCellLayer;
+                                                temp.transform.parent = gridcell.transform;
+
+                                                selectedPlantCard.Cooldown();
+                                                selectedPlantCard = null;
+                                                InactiveAllCurrentPlant();
+                                                Destroy(holdPlant);*/
+                }
+                else if (using_rake == false && gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
+                    ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
+                }
+                else if (using_rake == true && gridcell.isOccupied) {
+                    TakeHoldPlant(gridcell.currentPlant.typePlant);
+                    selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
+                    Destroy(gridcell.currentPlant);
+                    gridcell.currentPlant = null;
+                }
+            }
+            else if (gridcell != null && using_rake == true && gridcell.isOccupied) {
+                TakeHoldPlant(gridcell.currentPlant.typePlant);
+                ClickUsingRake();
+                selectedPlantCard = GetPlantCardMapping(gridcell.currentPlant.typePlant);
+                Destroy(gridcell.currentPlant.gameObject);
+                gridcell.currentPlant = null;
+            }
+        }
+    }
+
     public void PlantReal() {
+        if (selectedPlantCard == null || gridcell1 == null) { return; }
         fakePlant.SetActive(false);
         Plant temp = Instantiate(selectedPlantCard.plantType, gridcell1.transform.position, selectedPlantCard.plantType.transform.rotation);
         ChangeNumSun(-selectedPlantCard.price);
@@ -130,15 +151,44 @@ public class GamePlayManager : MonoBehaviour {
         InactiveAllCurrentPlant();
         Destroy(holdPlant);
     }
+    /*    bool IsPointerOverUI() {
+    #if UNITY_ANDROID || UNITY_IOS
+            if (Input.touchCount > 0)
+                return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+            else
+                return false;
+    #else
+        return EventSystem.current.IsPointerOverGameObject();
+    #endif
+        }*/
     bool IsPointerOverUI() {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+
 #if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount > 0)
-            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+            eventData.position = Input.GetTouch(0).position;
         else
             return false;
 #else
-    return EventSystem.current.IsPointerOverGameObject();
+    eventData.position = Input.mousePosition;
 #endif
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        for (int i = results.Count - 1; i >= 0; i--) {
+            if (results[i].gameObject.layer == 6) {
+                results.RemoveAt(i);
+            }
+        }
+        if (results.Count > 0) {
+            Debug.Log("UI Raycast hits:");
+            foreach (var result in results) {
+                Debug.Log(" - " + result.gameObject.name);
+            }
+            return true;
+        }
+
+        return false;
     }
     public void ChangeCurrentPlant(PlantCard plant) {
         selectedPlantCard = plant;
