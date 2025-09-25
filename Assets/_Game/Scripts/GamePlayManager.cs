@@ -43,10 +43,6 @@ public class GamePlayManager : MonoBehaviour {
     public Button btn_rake;
     public GameObject obj_plantCardChoice;
 
-    [Header("-----------SpawnCharacter------------")]
-    [SerializeField] protected Demo2Character characterPrefab;
-    [SerializeField] protected Transform spawnPoint;
-     protected Demo2Character playerCharacter;
     private void Awake() {
         Ins = this;
     }
@@ -258,31 +254,7 @@ public class GamePlayManager : MonoBehaviour {
             btn_rake.GetComponent<Image>().color = Color.white;
         }
     }
-    //public virtual void SpawnCharacter()
-    //{
-    //    // Nếu chưa có dữ liệu chọn nhân vật thì spawn mặc định
-    //    if (CharacterDataHolder.Instance == null || CharacterDataHolder.Instance.SelectedCharacterData == null)
-    //    {
-    //        Debug.LogWarning("Không có dữ liệu nhân vật, spawn mặc định.");
-    //        playerCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.identity);
-    //        playerCharacter.Init();
-    //        return;
-    //    }
 
-    //    // Spawn nhân vật đã chọn
-    //    playerCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.identity);
-    //    playerCharacter.Init();
-
-    //    // Apply dữ liệu part từ CharacterDataHolder
-    //    foreach (var kvp in CharacterDataHolder.Instance.SelectedCharacterData)
-    //    {
-    //        var part = playerCharacter.CurrentCharacterPartByType(kvp.Key);
-    //        if (part != null)
-    //        {
-    //            part.SetPartByIndex(kvp.Value);
-    //        }
-    //    }
-    //}
 }
 
 [System.Serializable]

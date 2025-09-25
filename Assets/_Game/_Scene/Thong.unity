@@ -507,7 +507,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1112,7 +1113,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1222,7 +1224,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1418,7 +1421,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8874309243943408523, guid: 961ada8d9a5dbd34fa4286cfcc44bad9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2813,7 +2817,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3307,7 +3313,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8628732436430206194, guid: 6dff1a1f8c6e84f489ab2741db2baa4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3784,7 +3791,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building 9 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3394578671086034230, guid: 9e9ecddc6aff81746a0c7c7589194a0d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4816,7 +4824,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8855431486902663892, guid: fca8fe8bcb49ce446932029d7740b4ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4889,7 +4898,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5178,7 +5188,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5422,7 +5433,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5866,7 +5878,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8628732436430206194, guid: 6dff1a1f8c6e84f489ab2741db2baa4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6229,7 +6242,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6449,8 +6463,6 @@ MonoBehaviour:
   using_rake: 0
   btn_rake: {fileID: 359681879}
   obj_plantCardChoice: {fileID: 569218308}
-  characterPrefab: {fileID: 8406148793253544992, guid: 8ef5e397b9aa0a740ae2b0fc8a5585de, type: 3}
-  spawnPoint: {fileID: 1040795128}
 --- !u!1 &439318834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,7 +6789,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6957,7 +6970,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7166,7 +7180,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7239,7 +7254,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7544,7 +7561,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4709095834949149981, guid: 2e9cbcf956215164b9eb1e0f029703bd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8290,7 +8308,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4018309538225361185, guid: ed5f4419811cb5e4a974a40aac85ebe3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8368,7 +8387,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8473,7 +8493,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9058,7 +9079,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9275,7 +9298,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manhole Covers 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6651471028447855584, guid: e5adab63a4810a24db2afc48ae74e805, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9567,7 +9591,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 437967443}
         m_TargetAssemblyTypeName: GamePlayManager, Assembly-CSharp
         m_MethodName: PlayAgain
         m_Mode: 1
@@ -9685,7 +9709,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8628732436430206194, guid: 6dff1a1f8c6e84f489ab2741db2baa4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9791,7 +9816,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9869,7 +9895,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10325,7 +10353,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10398,7 +10427,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6313302194771729014, guid: c2e113cd6395fbb4f879f9eeaff225ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10546,7 +10576,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6768327657290413861, guid: ccd706a16ea864941a9cabb4857796a1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10842,7 +10873,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11388,7 +11421,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8874309243943408523, guid: 961ada8d9a5dbd34fa4286cfcc44bad9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11665,7 +11699,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12022,7 +12057,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12198,7 +12234,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
+    - {fileID: -8277034859699928637, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12921,7 +12959,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15241,7 +15280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5325816118980610880, guid: 9fa655b16eff04d4fa284ac8322e7368, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5326190733805541251, guid: 9fa655b16eff04d4fa284ac8322e7368, type: 3}
       propertyPath: m_Layer
@@ -15589,7 +15628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6367708412953711897, guid: 9fa655b16eff04d4fa284ac8322e7368, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6398357876339338497, guid: 9fa655b16eff04d4fa284ac8322e7368, type: 3}
       propertyPath: m_IsActive
@@ -16890,7 +16929,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17085,7 +17125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 437967443}
         m_TargetAssemblyTypeName: GamePlayManager, Assembly-CSharp
         m_MethodName: PlayAgain
         m_Mode: 1
@@ -17370,7 +17410,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8628732436430206194, guid: 6dff1a1f8c6e84f489ab2741db2baa4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17534,7 +17575,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18177,7 +18219,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18352,7 +18395,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8855431486902663892, guid: fca8fe8bcb49ce446932029d7740b4ae, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20310,7 +20354,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20598,7 +20643,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3215655256938688801, guid: 5215971f383b3354b93f853e9b9f4abb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20714,7 +20760,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20944,7 +20991,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8425275519368672119, guid: 5ebb16597b4973443ae86364307ce9ce, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21160,7 +21208,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5160419179442439956, guid: 162a2ab64901f9746841bc0e9bf9efec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21233,7 +21282,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Road Sign
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1593748988573291262, guid: 6a66f1d592162d0488af3f95ad583fda, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21430,7 +21480,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8874309243943408523, guid: 961ada8d9a5dbd34fa4286cfcc44bad9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21578,7 +21629,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3394578671086034230, guid: 9e9ecddc6aff81746a0c7c7589194a0d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22566,7 +22618,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22660,7 +22713,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6313302194771729014, guid: c2e113cd6395fbb4f879f9eeaff225ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -24143,7 +24197,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3575245913924260407, guid: 15f26c55b72bb724da45119747d2ad3d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -25098,7 +25153,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone Fence 1 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5458510649204592674, guid: e462a430ab3954940ac6cd65fc6d5a9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
