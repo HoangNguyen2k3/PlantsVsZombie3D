@@ -10,40 +10,93 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba0fff57d5c31bd49a23f4e417005154, type: 3}
-<<<<<<<< HEAD:Assets/_Game/Data/Level 3.asset
-  m_Name: Level 3
-========
   m_Name: LevelBoss
->>>>>>>> origin/Thong2:Assets/_Game/Data/LevelBoss.asset
   m_EditorClassIdentifier: 
   phases:
   - phaseName: 1
     delayBeforeStart: 5
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
-      count: 10
-      interval: 0
-      spawnPoint: {fileID: 0}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 6
+      interval: 1
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 2
+      interval: 1
     hasBoss: 0
     bossPrefab: {fileID: 0}
     bossSpawnPoint: {fileID: 0}
   - phaseName: 2
-    delayBeforeStart: 5
+    delayBeforeStart: 15
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
-      count: 10
-      interval: 0
-      spawnPoint: {fileID: 0}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 4
+      interval: 1
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 7
+      interval: 4
+    - zombiePrefab: {fileID: 6062714602521128155, guid: 220d7567652ca30439ffe97b285fd820, type: 3}
+      count: 1
+      interval: 1
     hasBoss: 0
     bossPrefab: {fileID: 0}
     bossSpawnPoint: {fileID: 0}
   - phaseName: 3
-    delayBeforeStart: 5
+    delayBeforeStart: 30
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 9
+      interval: 0.5
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 10
+      interval: 1.5
+    - zombiePrefab: {fileID: 6062714602521128155, guid: 220d7567652ca30439ffe97b285fd820, type: 3}
       count: 5
-      interval: 0
-      spawnPoint: {fileID: 0}
+      interval: 1
+    - zombiePrefab: {fileID: 6050034838511450250, guid: 1ad420981bfdb674db1bcb210f0e8f8d, type: 3}
+      count: 1
+      interval: 1
     hasBoss: 0
     bossPrefab: {fileID: 0}
+    bossSpawnPoint: {fileID: 0}
+  - phaseName: 4
+    delayBeforeStart: 45
+    zombieSpawns:
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 15
+      interval: 0.5
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 12
+      interval: 1
+    - zombiePrefab: {fileID: 6062714602521128155, guid: 220d7567652ca30439ffe97b285fd820, type: 3}
+      count: 6
+      interval: 1
+    - zombiePrefab: {fileID: 6050034838511450250, guid: 1ad420981bfdb674db1bcb210f0e8f8d, type: 3}
+      count: 2
+      interval: 1
+    - zombiePrefab: {fileID: 3964089923615987538, guid: 751a1da2dcf73644d812e5b7bac1bbf8, type: 3}
+      count: 1
+      interval: 1
+    hasBoss: 0
+    bossPrefab: {fileID: 0}
+    bossSpawnPoint: {fileID: 0}
+  - phaseName: 5
+    delayBeforeStart: 90
+    zombieSpawns:
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 15
+      interval: 0.5
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 12
+      interval: 1
+    - zombiePrefab: {fileID: 6062714602521128155, guid: 220d7567652ca30439ffe97b285fd820, type: 3}
+      count: 6
+      interval: 1
+    - zombiePrefab: {fileID: 6050034838511450250, guid: 1ad420981bfdb674db1bcb210f0e8f8d, type: 3}
+      count: 2
+      interval: 1
+    - zombiePrefab: {fileID: 3964089923615987538, guid: 751a1da2dcf73644d812e5b7bac1bbf8, type: 3}
+      count: 1
+      interval: 1
+    hasBoss: 1
+    bossPrefab: {fileID: 6857508417766555273, guid: 5f68199451c27804c88ba12b114c29f7, type: 3}
     bossSpawnPoint: {fileID: 0}
