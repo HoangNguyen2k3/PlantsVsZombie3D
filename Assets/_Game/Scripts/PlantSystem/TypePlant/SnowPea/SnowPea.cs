@@ -3,7 +3,7 @@ using UnityEngine;
 public class SnowPea : Plant {
     public GameObject bulletPrefab;
     public Transform shootPoint;
-    public float attackRate = 1.5f;
+    public float attackRate = 3f;
 
     private float timer;
     void Update() {
