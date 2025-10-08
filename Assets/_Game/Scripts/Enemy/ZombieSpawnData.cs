@@ -36,6 +36,4 @@ public class ZombieSpawnInfo {
     [Tooltip("Khoảng cách giữa 2 lần spawn zombie (giây)")]
     public float interval = 1.5f;
 
-    [Tooltip("Vị trí spawn (null = random trong list_posSpawn của GamePlayManager)")]
-    public Transform spawnPoint;
 }

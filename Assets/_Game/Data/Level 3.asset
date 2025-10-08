@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba0fff57d5c31bd49a23f4e417005154, type: 3}
+<<<<<<<< HEAD:Assets/_Game/Data/Level 3.asset
   m_Name: Level 3
+========
+  m_Name: LevelBoss
+>>>>>>>> origin/Thong2:Assets/_Game/Data/LevelBoss.asset
   m_EditorClassIdentifier: 
   phases:
   - phaseName: 1

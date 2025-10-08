@@ -16,30 +16,39 @@ MonoBehaviour:
   - phaseName: 1
     delayBeforeStart: 5
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
-      count: 10
-      interval: 0
-      spawnPoint: {fileID: 0}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 5
+      interval: 3
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 2
+      interval: 3
     hasBoss: 0
     bossPrefab: {fileID: 0}
     bossSpawnPoint: {fileID: 0}
   - phaseName: 2
-    delayBeforeStart: 5
+    delayBeforeStart: 15
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
       count: 10
-      interval: 0
-      spawnPoint: {fileID: 0}
+      interval: 1
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
+      count: 7
+      interval: 1
     hasBoss: 0
     bossPrefab: {fileID: 0}
     bossSpawnPoint: {fileID: 0}
   - phaseName: 3
-    delayBeforeStart: 5
+    delayBeforeStart: 30
     zombieSpawns:
-    - zombiePrefab: {fileID: 6548027592414140086, guid: c14896a89d63e964cb07f11e8bc09ba3, type: 3}
+    - zombiePrefab: {fileID: 7261149733922657724, guid: 58d68d06267edae459398563d29b92d6, type: 3}
+      count: 10
+      interval: 0.5
+    - zombiePrefab: {fileID: 3674237996556477671, guid: 9c4db825a2783e044ac90c3320628d0e, type: 3}
       count: 5
-      interval: 0
-      spawnPoint: {fileID: 0}
+      interval: 0.5
+    - zombiePrefab: {fileID: 6062714602521128155, guid: 220d7567652ca30439ffe97b285fd820, type: 3}
+      count: 2
+      interval: 4
     hasBoss: 0
     bossPrefab: {fileID: 0}
     bossSpawnPoint: {fileID: 0}
