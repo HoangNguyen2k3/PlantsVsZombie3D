@@ -61,9 +61,9 @@ public class GamePlayManager : MonoBehaviour {
     public int currentLevel = 1;
     private void Awake() {
         Ins = this;
-        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
-            currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
-        }
+        /*        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
+                    currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
+                }*/
         spawnData = zombieSpawnDatas[currentLevel - 1];
     }
     private void Start() {
