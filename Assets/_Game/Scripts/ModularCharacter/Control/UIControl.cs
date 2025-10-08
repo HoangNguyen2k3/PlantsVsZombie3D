@@ -61,9 +61,7 @@ namespace Layer_lab._3D_Casual_Character.Demo2
             }
         }
 
-        /// <summary>
-        /// 랜덤
-        /// </summary>
+     
         public void OnClick_Random()
         {
             Demo2Character.Instance.OnRandomChanged.Invoke();
@@ -117,7 +115,7 @@ namespace Layer_lab._3D_Casual_Character.Demo2
             CharacterDataHolder.Instance.SelectedCharacterData = partsData;
             Debug.Log($"📦 Đã lưu {partsData.Count} parts vào CharacterDataHolder");
 
-            changeScene.ChangeNewScene("Thong");
+            changeScene.ChangeNewScene("Hoang");
         }
 
         public void OnClick_Back()

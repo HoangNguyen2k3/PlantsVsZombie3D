@@ -85,7 +85,7 @@ public class MenuUIControl : MonoBehaviour {
     public void OnClick_SelectLevel(string name) {
         if (CharacterDataHolder.Instance != null &&
             CharacterDataHolder.Instance.SelectedCharacterData != null) {
-            changeScene.ChangeNewScene("Thong");
+            changeScene.ChangeNewScene("Hoang");
         }
         else {
             changeScene.ChangeNewScene("SelectCharacter");
@@ -103,23 +103,4 @@ public class MenuUIControl : MonoBehaviour {
             SoundManager.Instance.SetSfxVolume(value);
     }
 
-    // Tăng giảm thủ công nếu muốn gán vào nút +
-    public void IncreaseMusicVolume() => AdjustMusicVolume(0.1f);
-    public void DecreaseMusicVolume() => AdjustMusicVolume(-0.1f);
-    public void IncreaseSfxVolume() => AdjustSfxVolume(0.1f);
-    public void DecreaseSfxVolume() => AdjustSfxVolume(-0.1f);
-
-    private void AdjustMusicVolume(float delta) {
-        if (SoundManager.Instance == null || sldMusic == null) return;
-        float newValue = Mathf.Clamp01(sldMusic.value + delta);
-        sldMusic.value = newValue;
-        SoundManager.Instance.SetMusicVolume(newValue);
-    }
-
-    private void AdjustSfxVolume(float delta) {
-        if (SoundManager.Instance == null || sldSfx == null) return;
-        float newValue = Mathf.Clamp01(sldSfx.value + delta);
-        sldSfx.value = newValue;
-        SoundManager.Instance.SetSfxVolume(newValue);
-    }
 }

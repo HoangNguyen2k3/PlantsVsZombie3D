@@ -61,10 +61,10 @@ public class GamePlayManager : MonoBehaviour {
     public int currentLevel = 1;
     private void Awake() {
         Ins = this;
-        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
-            currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
-        }
-        spawnData = zombieSpawnDatas[currentLevel - 1];
+        //if (PlayerPrefs.HasKey("CurrentLevelHere")) {
+        //    currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
+        //}
+        //spawnData = zombieSpawnDatas[currentLevel - 1];
     }
     private void Start() {
         Application.targetFrameRate = 60;
@@ -226,9 +226,7 @@ public class GamePlayManager : MonoBehaviour {
 
             foreach (var spawnInfo in phase.zombieSpawns) {
                 for (int i = 0; i < spawnInfo.count; i++) {
-                    Transform pos = spawnInfo.spawnPoint != null
-                        ? spawnInfo.spawnPoint
-                        : list_posSpawn[Random.Range(0, list_posSpawn.Count)];
+                    Transform pos = list_posSpawn[Random.Range(0, list_posSpawn.Count)];
 
                     Instantiate(spawnInfo.zombiePrefab, pos.position, Quaternion.identity);
                     yield return new WaitForSeconds(spawnInfo.interval);
