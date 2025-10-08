@@ -61,9 +61,9 @@ public class GamePlayManager : MonoBehaviour {
     public int currentLevel = 1;
     private void Awake() {
         Ins = this;
-        /*        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
-                    currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
-                }*/
+        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
+            currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
+        }
         spawnData = zombieSpawnDatas[currentLevel - 1];
     }
     private void Start() {
@@ -102,14 +102,6 @@ public class GamePlayManager : MonoBehaviour {
         HandleTouch();
     }
 #endif
-        /*        if (Input.GetMouseButtonDown(0)) {
-                    if (IsPointerOverUI()) {
-
-                    }
-                    else {
-                        HandleTouch();
-                    }
-                }*/
         if (numEnemyCurrentInMap == 0) {
             WinningGame();
             isEndGame = true;
@@ -195,9 +187,11 @@ public class GamePlayManager : MonoBehaviour {
         if (holdPlant != null) {
             Destroy(holdPlant.gameObject);
         }
-        TakeHoldPlant(plant.plantType.typePlant);
+        if (plant.plantMysTypes.Length == 0)
+            TakeHoldPlant(plant.plantType.typePlant);
     }
     public void TakeHoldPlant(TypePlant type) {
+
         GameObject temp = GetPlantHoldMapping(type);
         holdPlant = Instantiate(temp, posHoldPlant);
         holdPlant.transform.localPosition = Vector3.zero;
@@ -248,9 +242,12 @@ public class GamePlayManager : MonoBehaviour {
         // Khi xong toàn bộ phase
         Debug.Log("🎯 Tất cả wave đã hoàn thành!");
     }
+    [ContextMenu("Hha")]
     public void WinningGame() {
         if (PlayerPrefs.GetInt("CurrentLevel") == PlayerPrefs.GetInt("CurrentLevelHere")) {
-            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+            if (PlayerPrefs.GetInt("CurrentLevel") <= 4) {
+                PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+            }
         }
         isEndGame = true;
         winningGameUI.SetActive(true);
