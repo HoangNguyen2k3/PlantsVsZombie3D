@@ -119,5 +119,10 @@ namespace Layer_lab._3D_Casual_Character.Demo2
 
             changeScene.ChangeNewScene("Thong");
         }
+
+        public void OnClick_Back()
+        {
+            changeScene.ChangeNewScene("Menu");
+        }
     }
 }

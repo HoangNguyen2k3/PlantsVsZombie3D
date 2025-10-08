@@ -1,7 +1,7 @@
-﻿using DG.Tweening;
-using Layer_lab._3D_Casual_Character.Demo2;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Layer_lab._3D_Casual_Character.Demo2;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -53,13 +53,29 @@ public class GamePlayManager : MonoBehaviour {
     [Header("-----------SpawnCharacter------------")]
     [SerializeField] protected Demo2Character characterPrefab;
     [SerializeField] protected Transform spawnPoint;
-     protected Demo2Character playerCharacter;
+    protected Demo2Character playerCharacter;
+
+    [Header("------------Spawn Data Scriptable------------")]
+    public List<ZombieSpawnData> zombieSpawnDatas = new List<ZombieSpawnData>();
+    public ZombieSpawnData spawnData;
+    public int currentLevel = 1;
     private void Awake() {
         Ins = this;
+        if (PlayerPrefs.HasKey("CurrentLevelHere")) {
+            currentLevel = PlayerPrefs.GetInt("CurrentLevelHere");
+        }
+        spawnData = zombieSpawnDatas[currentLevel - 1];
     }
     private void Start() {
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
+        int temp_num = 0;
+        for (int i = 0; i < spawnData.phases.Count; i++) {
+            for (int j = 0; j < spawnData.phases[i].zombieSpawns.Count; j++) {
+                temp_num += spawnData.phases[i].zombieSpawns[j].count;
+            }
+        }
+        numSpawnMax = temp_num;
         numEnemyCurrentInMap = numSpawnMax;
         text_numSun.text = currentSun.ToString();
         selectedPlantCard = null;
@@ -109,17 +125,6 @@ public class GamePlayManager : MonoBehaviour {
                     fakePlant.SetActive(true);
                     fakePlant.transform.position = gridcell.transform.position + new Vector3(0, 0.5f, 0);
                     gridcell1 = gridcell;
-                    /*                            Plant temp = Instantiate(selectedPlantCard.plantType, gridcell.transform.position, selectedPlantCard.plantType.transform.rotation);
-                                                ChangeNumSun(-selectedPlantCard.price);
-
-                                                gridcell.currentPlant = temp;
-                                                temp.gameObject.layer = gridCellLayer;
-                                                temp.transform.parent = gridcell.transform;
-
-                                                selectedPlantCard.Cooldown();
-                                                selectedPlantCard = null;
-                                                InactiveAllCurrentPlant();
-                                                Destroy(holdPlant);*/
                 }
                 else if (using_rake == false && gridcell.isOccupied && currentSun >= selectedPlantCard.price) {
                     ProcessMergePlant(selectedPlantCard.plantType.typePlant, gridcell.currentPlant.typePlant, gridcell);
@@ -156,16 +161,6 @@ public class GamePlayManager : MonoBehaviour {
         InactiveAllCurrentPlant();
         Destroy(holdPlant);
     }
-    /*    bool IsPointerOverUI() {
-    #if UNITY_ANDROID || UNITY_IOS
-            if (Input.touchCount > 0)
-                return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
-            else
-                return false;
-    #else
-        return EventSystem.current.IsPointerOverGameObject();
-    #endif
-        }*/
     bool IsPointerOverUI() {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
 
@@ -218,14 +213,47 @@ public class GamePlayManager : MonoBehaviour {
         text_numSun.text = currentSun.ToString();
     }
     public IEnumerator SpawnEnemy() {
-        while (numSpawnMax > 0) {
-            numSpawnMax--;
-            int ranpos = Random.Range(0, list_posSpawn.Count);
-            Instantiate(zombies[Random.Range(0, zombies.Count)], list_posSpawn[ranpos].position, Quaternion.identity);
-            yield return new WaitForSeconds(timeBetweenSpawn);
+        if (spawnData == null) {
+            Debug.LogError("⚠️ Chưa gán ZombieSpawnData!");
+            yield break;
         }
+
+        foreach (var phase in spawnData.phases) {
+            textAnnouce.text = $"Wave: {phase.phaseName}";
+            textAnnouce.DOFade(1, 0.2f).OnComplete(() => textAnnouce.DOFade(0, 1f));
+
+            yield return new WaitForSeconds(phase.delayBeforeStart);
+
+            foreach (var spawnInfo in phase.zombieSpawns) {
+                for (int i = 0; i < spawnInfo.count; i++) {
+                    Transform pos = spawnInfo.spawnPoint != null
+                        ? spawnInfo.spawnPoint
+                        : list_posSpawn[Random.Range(0, list_posSpawn.Count)];
+
+                    Instantiate(spawnInfo.zombiePrefab, pos.position, Quaternion.identity);
+                    yield return new WaitForSeconds(spawnInfo.interval);
+                }
+            }
+
+            // Spawn boss (nếu có)
+            if (phase.hasBoss && phase.bossPrefab != null) {
+                Transform bossPos = phase.bossSpawnPoint != null
+                    ? phase.bossSpawnPoint
+                    : list_posSpawn[Random.Range(0, list_posSpawn.Count)];
+
+                Instantiate(phase.bossPrefab, bossPos.position, Quaternion.identity);
+            }
+
+            // Cho nghỉ 1 chút giữa các phase (tùy theo delayBeforeStart phase sau)
+        }
+
+        // Khi xong toàn bộ phase
+        Debug.Log("🎯 Tất cả wave đã hoàn thành!");
     }
     public void WinningGame() {
+        if (PlayerPrefs.GetInt("CurrentLevel") == PlayerPrefs.GetInt("CurrentLevelHere")) {
+            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+        }
         isEndGame = true;
         winningGameUI.SetActive(true);
     }
@@ -332,6 +360,9 @@ public class GamePlayManager : MonoBehaviour {
             obj_plantCardChoice.gameObject.SetActive(true);
             btn_rake.GetComponent<Image>().color = Color.white;
         }
+    }
+    public void OnClickToSelectLevel() {
+        SceneManager.LoadScene("SelectLevel");
     }
     //public virtual void SpawnCharacter()
     //{

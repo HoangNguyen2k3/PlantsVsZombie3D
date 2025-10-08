@@ -167,11 +167,13 @@ namespace Layer_lab._3D_Casual_Character.Demo2
             {
                 CurrentIndex = -1;
                 HideAllParts();
+                Demo2Character.Instance.OnPartChanged.Invoke(PartType, CurrentIndex);
                 return;
             }
 
             CurrentIndex = index;
             SetParts();
+            Demo2Character.Instance.OnPartChanged.Invoke(PartType, CurrentIndex);
         }
 
 
