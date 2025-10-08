@@ -4,7 +4,7 @@ using UnityEngine;
 public class PeashooterPlant : Plant {
     public GameObject bulletPrefab;
     public Transform shootPoint;
-    public float attackRate = 1.5f;
+    public float attackRate = 2.5f;
 
     private float timer;
 

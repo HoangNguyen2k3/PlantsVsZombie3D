@@ -2,8 +2,16 @@ using System.Collections;
 using UnityEngine;
 
 public class ZombieController : MonoBehaviour {
+
+    public enum StateZombie
+    {
+        Walk,
+        Attack,
+        Dead
+    }
+
     [Header("====== Base ======")]
-    public float speed = 0.8f;
+    public float speed = 1f;
     public int maxHealth = 10;
     public int currentHealth;
 
@@ -12,68 +20,62 @@ public class ZombieController : MonoBehaviour {
     [SerializeField] private int damagePerHit = 20;
     [SerializeField] private float attackInterval = 1.0f;
 
-
-    [Header("====== Burst walk duration ======")]
-    public float fastDuration = 0.8f;
-    public float slowDuration = 1.8f;
-    public float fastMultiplier = 1.0f;
-    public float slowMultiplier = 0.2f;
-
-
+    [Header("====== Effect ======")]       
+    public GameObject slowEffect;
+    
     private bool isDead = false;
     private bool isAttacking = false;
+
     private float currentMultiplier = 1f;
 
     private GameObject targetPlant;
-    private Coroutine movePatternRoutine;
-    private Animator animator;
+    public Animator animator;
 
     private float halfSpeed = 0f;
-    public GameObject slowEffect;
+
+    private StateZombie currentState;
+    
+
     public void Start() {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
-        movePatternRoutine = StartCoroutine(BurstWalkPattern());
         halfSpeed = speed / 2;
-        animator.SetBool("isWalking", true);
+
+        //animator.SetBool("isWalking", true);
+
+        ChangeState(StateZombie.Walk);
     }
 
 
     private void Update() {
-        if (isDead) return;
+        if (currentState == StateZombie.Dead) return;
 
         if (isAttacking && targetPlant == null) {
             EndAttack();
         }
 
-        if (!isAttacking) {
-            animator.SetBool("isWalking", true);
-            transform.Translate(-Vector3.right * (speed * currentMultiplier) * Time.deltaTime);
-            DetectPlant();
+        switch (currentState)
+        {
+            case StateZombie.Walk:
+                WalkBehavior();
+                break;
+            case StateZombie.Attack:
+                break;
+            case StateZombie.Dead:
+                break;
         }
-
-
     }
 
-    private IEnumerator BurstWalkPattern() {
-        while (!isDead) {
-            //fast
-            currentMultiplier = fastMultiplier;
-            float t = 0f;
+    private void WalkBehavior()
+    {
+        animator.SetBool("isWalking", true);
+        transform.Translate(-Vector3.right * (speed * currentMultiplier) * Time.deltaTime);
+        DetectPlant();
+    }
 
-            while (t < fastDuration && !isDead) {
-                t += Time.deltaTime;
-                yield return null;
-            }
-
-            //slow
-            currentMultiplier = slowMultiplier;
-            t = 0f;
-            while (t < slowDuration && !isDead) {
-                t += Time.deltaTime;
-                yield return null;
-            }
-        }
+    public void ChangeState(StateZombie state)
+    {
+        currentState = state;
     }
 
     private void DetectPlant() {
@@ -82,6 +84,7 @@ public class ZombieController : MonoBehaviour {
         if (Physics.Raycast(transform.position, -Vector3.right, out RaycastHit hit, attackRange)) {
             if (hit.collider.CompareTag("Plant") && hit.collider.isTrigger == false) {
                 targetPlant = hit.collider.gameObject;
+                ChangeState(StateZombie.Attack);
                 StartCoroutine(AttackPlant(targetPlant));
             }
         }
@@ -107,9 +110,12 @@ public class ZombieController : MonoBehaviour {
     }
 
     private void EndAttack() {
+
+        if (isDead) return;
         isAttacking = false;
         animator.SetBool("isAttacking", false);
         animator.SetBool("isWalking", true);
+        ChangeState(StateZombie.Walk);  
     }
 
     public void TakeDamage(int amount) {
@@ -127,10 +133,11 @@ public class ZombieController : MonoBehaviour {
     void Die() {
         isDead = true;
         animator.SetBool("isDead", true);
+        ChangeState(StateZombie.Dead);
+        
         animator.SetBool("isWalking", false);
         animator.SetBool("isAttacking", false);
 
-        if (movePatternRoutine != null) StopCoroutine(movePatternRoutine);
         StopAllCoroutines();
 
         Destroy(gameObject, 1f);
@@ -143,17 +150,22 @@ public class ZombieController : MonoBehaviour {
     }
     public IEnumerator EffectSlowEnemy() {
         speed = halfSpeed;
+        animator.speed = 0.5f;
         slowEffect.SetActive(true);
+        
         yield return new WaitForSeconds(3f);
         speed = halfSpeed * 2;
+        
         slowEffect.SetActive(false);
     }
+
     private void OnDestroy() {
         GamePlayManager.Ins.numEnemyCurrentInMap--;
     }
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("EnterGarden")) {
-            transform.position -= new Vector3(0, 0.28f, 0);
-        }
-    }
+
+    //private void OnTriggerEnter(Collider other) {
+    //    if (other.CompareTag("EnterGarden")) {
+    //        transform.position -= new Vector3(0, 0.34f, 0);
+    //    }
+    //}
 }

@@ -52,7 +52,7 @@ MonoBehaviour:
   isDead: 0
   bulletPrefab: {fileID: 2034076795885031386, guid: 4c7ea5c448eeea944a424b0e3178ee64, type: 3}
   shootPoint: {fileID: 5715718630699116441}
-  attackRate: 1.5
+  attackRate: 2
   time_Attacks: 1
 --- !u!65 &7888311165046753232
 BoxCollider:
