@@ -51,4 +51,9 @@ public class MenuUIControl : MonoBehaviour
             
         return CharacterDataHolder.Instance.SelectedCharacterData.Count > 0;
     }
+
+    public void OnClick_SelectLevel(string name)
+    {
+        changeScene.ChangeNewScene(name);
+    }
 }
